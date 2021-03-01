@@ -1,3 +1,3 @@
-import NameOfTheService from './components/NameOfTheService.jsx';
+import NameOfTheService from "./components/NameOfTheService.jsx";
 
 window.NameOfTheService = NameOfTheService;
