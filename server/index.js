@@ -17,6 +17,7 @@ app.get("/api/overview", async (req, res) => {
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
       { headers: { Authorization: auth } }
     );
+    console.log(data.data);
     res.send(data.data.results[0].photos);
   } catch (err) {
     res.send(err);
