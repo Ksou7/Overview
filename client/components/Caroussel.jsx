@@ -11,7 +11,7 @@ class Caroussel extends Component {
       currentId: 0,
       currenObj: null,
       render: false,
-      i: false,
+      counter: 0,
     };
     this.clickable = this.clickable.bind(this);
     this.fetchPictures = this.fetchPictures.bind(this);
@@ -47,6 +47,30 @@ class Caroussel extends Component {
       currenObj: this.state.data[e.target.id],
     });
     // this.forceUpdate();
+  }
+
+  arrowRightClick() {
+    this.state.counter !== this.state.data.length
+      ? this.setState({
+          counter: this.state.counter + 1,
+          currenObj: this.state.data[this.state.counter],
+        })
+      : this.setState({
+          counter: this.state.counter,
+          currenObj: this.state.data[this.state.counter],
+        });
+  }
+
+  arrowLeftClick() {
+    this.state.counter !== 0
+      ? this.setState({
+          counter: this.state.counter - 1,
+          currenObj: this.state.data[this.state.counter],
+        })
+      : this.setState({
+          counter: this.state.data.length - 1,
+          currenObj: this.state.data[this.state.counter],
+        });
   }
 
   render() {
@@ -92,26 +116,30 @@ class Caroussel extends Component {
                                   : this.state.data[0].url
                               }
                             />
-                            ;
                           </div>
                         </div>
-
-                        <a
-                          className="left carousel-control"
-                          href="#myCarousel"
-                          role="button"
-                          data-slide="prev"
-                        >
-                          <span className="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a
-                          className="right carousel-control"
-                          href="#myCarousel"
-                          role="button"
-                          data-slide="next"
-                        >
-                          <span className="glyphicon glyphicon-chevron-right"></span>
-                        </a>
+                        {this.state.counter !== 0 ? (
+                          <a
+                            className="left carousel-control"
+                            href="#myCarousel"
+                            role="button"
+                            data-slide="prev"
+                            onClick={this.arrowLeftClick.bind(this)}
+                          >
+                            <span className="glyphicon glyphicon-chevron-left"></span>
+                          </a>
+                        ) : null}
+                        {this.state.counter !== this.state.data.length ? (
+                          <a
+                            className="right carousel-control"
+                            href="#myCarousel"
+                            role="button"
+                            data-slide="next"
+                            onClick={this.arrowRightClick.bind(this)}
+                          >
+                            <span className="glyphicon glyphicon-chevron-right"></span>
+                          </a>
+                        ) : null}
                       </div>
                     </div>
                   </div>
