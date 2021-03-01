@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // import "@brainhubeu/react-carousel/lib/style.css";
 import data from "./data.js";
 import axios from "axios";
+import WZoom from "../../src/wheel-zoom.js";
 class Caroussel extends Component {
   constructor(props) {
     super(props);
@@ -12,10 +13,12 @@ class Caroussel extends Component {
       currenObj: null,
       render: false,
       counter: 0,
+      isZoomed: false,
     };
     this.clickable = this.clickable.bind(this);
     this.fetchPictures = this.fetchPictures.bind(this);
   }
+
   //function to fetch the pictures url
   fetchPictures() {
     axios.get("/api/overview").then((response) => {
@@ -29,8 +32,6 @@ class Caroussel extends Component {
 
   componentDidMount() {
     this.fetchPictures();
-
-    // this.forceUpdate();
   }
 
   myf() {
@@ -74,8 +75,16 @@ class Caroussel extends Component {
           currenObj: this.state.data[this.state.counter],
         });
   }
+  zoomIn() {
+    this.setState({ isZoomed: true });
+  }
 
   render() {
+    WZoom.create("#myContent", {
+      type: "html",
+      width: 1000,
+      height: 500,
+    });
     return (
       <div id="this" className="container">
         {this.state.render ? (
@@ -105,21 +114,30 @@ class Caroussel extends Component {
                       id="boxes"
                     >
                       <div className="carousel slide" id="myCarousel">
-                        <div className="carousel-inner">
-                          <div
-                            className="active item"
-                            data-slide-number="0"
-                            onClick={(e) => this.clickable(e)}
-                          >
-                            <img
-                              src={
-                                this.state.currenObj
-                                  ? this.state.currenObj.url
-                                  : this.state.data[0].url
-                              }
-                            />
+                        <div>
+                          <div className="carousel-inner">
+                            <div
+                              className="active item"
+                              data-slide-number="0"
+                              // onClick={(e) => this.clickable(e)}
+                            >
+                              <div id="myWindow">
+                                <img
+                                  // style={{ width: "400px", height: "600px" }}
+                                  id="myContent"
+                                  // id={this.state.currentId}
+                                  src={
+                                    this.state.currenObj
+                                      ? this.state.currenObj.url
+                                      : this.state.data[0].url
+                                  }
+                                  onClick={this.zoomIn.bind(this)}
+                                />
+                              </div>
+                            </div>
                           </div>
                         </div>
+
                         {this.state.counter !== 0 && this.state.render ? (
                           <a
                             className="left carousel-control"
@@ -131,7 +149,7 @@ class Caroussel extends Component {
                             <span className="glyphicon glyphicon-chevron-left"></span>
                           </a>
                         ) : null}
-                        {this.state.counter !== this.state.data.length &&
+                        {this.state.counter !== this.state.data.length - 1 &&
                         this.state.render ? (
                           <a
                             className="right carousel-control"

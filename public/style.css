@@ -41,6 +41,7 @@ navbar-default {
 
 .thumbnail {
   padding: 0;
+  height: 500px;
 }
 
 .carousel-inner > .item > img,
@@ -69,7 +70,17 @@ navbar-default {
   background-color: #e1eaea;
   border: 2px solid #e0e0e0;
 }
-#this {
-  width: 900px;
-  margin-right: 23em;
+
+#myWindow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #e1eaea;
+}
+
+#myContent {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
