@@ -1,4 +1,6 @@
-import React from 'react';
+import React from "react";
+import Caroussel from "./Caroussel.jsx";
+import Navbar from "./Navbar.jsx";
 
 export default class NameOfTheService extends React.Component {
   constructor() {
@@ -8,13 +10,18 @@ export default class NameOfTheService extends React.Component {
   }
 
   componentDidMount() {
-    console.log('service mounted')
+    console.log("service mounted");
   }
 
   render() {
     return (
       <div>
-        <h1>Hello Service 1</h1>
+        <div>
+          <Navbar />
+        </div>
+        <div>
+          <Caroussel />
+        </div>
       </div>
     );
   }
