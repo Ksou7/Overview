@@ -53,11 +53,13 @@ class Caroussel extends Component {
     this.state.counter !== this.state.data.length
       ? this.setState({
           counter: this.state.counter + 1,
-          currenObj: this.state.data[this.state.counter],
+          currenObj: this.state.data[this.state.counter + 1],
+          render: true,
         })
       : this.setState({
           counter: this.state.counter,
           currenObj: this.state.data[this.state.counter],
+          render: true,
         });
   }
 
@@ -65,10 +67,10 @@ class Caroussel extends Component {
     this.state.counter !== 0
       ? this.setState({
           counter: this.state.counter - 1,
-          currenObj: this.state.data[this.state.counter],
+          currenObj: this.state.data[this.state.counter - 1],
         })
       : this.setState({
-          counter: this.state.data.length - 1,
+          counter: this.state.data.length,
           currenObj: this.state.data[this.state.counter],
         });
   }
@@ -118,7 +120,7 @@ class Caroussel extends Component {
                             />
                           </div>
                         </div>
-                        {this.state.counter !== 0 ? (
+                        {this.state.counter !== 0 && this.state.render ? (
                           <a
                             className="left carousel-control"
                             href="#myCarousel"
@@ -129,7 +131,8 @@ class Caroussel extends Component {
                             <span className="glyphicon glyphicon-chevron-left"></span>
                           </a>
                         ) : null}
-                        {this.state.counter !== this.state.data.length ? (
+                        {this.state.counter !== this.state.data.length &&
+                        this.state.render ? (
                           <a
                             className="right carousel-control"
                             href="#myCarousel"
