@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "test": "jest",
-    "build": "npx webpack --config webpack.config.js --w",
+    "build": "npx webpack --config webpack.config.js --watch",
     "start": "nodemon ./server/index.js"
   },
   "author": "RBK Tunisia",
@@ -23,6 +23,7 @@
     "react-dom": "^16.2.0",
     "react-pose": "^4.0.10",
     "react-slideshow-image": "^3.4.3",
+    "react-star-ratings": "^2.3.0",
     "vanilla-js-wheel-zoom": "^6.4.1",
     "webpack": "^4.11.0"
   },

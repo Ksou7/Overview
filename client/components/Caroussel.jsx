@@ -11,7 +11,7 @@ class Caroussel extends Component {
       data: [],
       currentId: 0,
       currenObj: false,
-      // render: false,
+      render: false,
       counter: 0,
       isZoomed: false,
     };
@@ -32,7 +32,7 @@ class Caroussel extends Component {
     try {
       const response = await axios.get("/api/overview");
       this.setState(
-        { data: response.data, currenObj: response.data[0] },
+        { data: response.data, currenObj: response.data[0], render: true },
         () => {
           console.log(this.state);
         }
@@ -91,11 +91,11 @@ class Caroussel extends Component {
 
   render() {
     console.log(this.state.data);
-    WZoom.create("#myContent", {
-      type: "html",
-      width: 1000,
-      height: 500,
-    });
+    // WZoom.create("#myContent", {
+    //   type: "html",
+    //   width: 1000,
+    //   height: 500,
+    // });
     return (
       <div id="this" className="container">
         <div id="main_area" className="bigbox">
@@ -126,22 +126,18 @@ class Caroussel extends Component {
                     <div className="carousel slide" id="myCarousel">
                       <div>
                         <div className="carousel-inner">
-                          <div
-                            className="active item"
-                            data-slide-number="0"
-                            // onClick={(e) => this.clickable(e)}
-                          >
-                            <div id="myWindow">
-                              {this.state.currenObj && (
-                                <img
-                                  // style={{ width: "400px", height: "600px" }}
-                                  id="myContent"
-                                  // id={this.state.currentId}
-                                  src={this.state.currenObj.url}
-                                  onClick={this.zoomIn.bind(this)}
-                                />
-                              )}
-                            </div>
+                          <div className="active item" data-slide-number="0">
+                            {/* <div id="myWindow"> */}
+                            {this.state.currenObj && (
+                              <img
+                                // style={{ width: "400px", height: "600px" }}
+                                // id="myContent"
+                                // id={this.state.currentId}
+                                src={this.state.currenObj.url}
+                                onClick={this.zoomIn.bind(this)}
+                              />
+                            )}
+                            {/* </div> */}
                           </div>
                         </div>
                       </div>
