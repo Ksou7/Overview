@@ -10,8 +10,8 @@ class Caroussel extends Component {
     this.state = {
       data: [],
       currentId: 0,
-      currenObj: null,
-      render: false,
+      currenObj: false,
+      // render: false,
       counter: 0,
       isZoomed: false,
     };
@@ -23,15 +23,25 @@ class Caroussel extends Component {
   fetchPictures() {
     axios.get("/api/overview").then((response) => {
       console.log("fetching", response);
-      this.setState({ data: response.data, render: true });
-      console.log(this.state.data);
-      console.log(this.state.currenObj);
-      console.log("heeeeere", this.state.data[0].thumbnail_url);
+      this.setState({ data: response.data }, console.log(this.state.data));
+      // console.log("heeeeere", this.state.data[0].thumbnail_url);
     });
   }
 
-  componentDidMount() {
-    this.fetchPictures();
+  async componentDidMount() {
+    try {
+      const response = await axios.get("/api/overview");
+      this.setState(
+        { data: response.data, currenObj: response.data[0] },
+        () => {
+          console.log(this.state);
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
+
+    // console.log("heeeeere", this.state.data[0].thumbnail_url);
   }
 
   myf() {
@@ -80,6 +90,7 @@ class Caroussel extends Component {
   }
 
   render() {
+    console.log(this.state.data);
     WZoom.create("#myContent", {
       type: "html",
       width: 1000,
@@ -87,88 +98,84 @@ class Caroussel extends Component {
     });
     return (
       <div id="this" className="container">
-        {this.state.render ? (
-          <div id="main_area" className="bigbox">
-            <div className="row">
-              <div className="col-sm-3" id="slider-thumbs">
-                <ul className="hide-bullets">
-                  {this.state.data.map((obj, i) => (
-                    <li
-                      className="col-sm-12"
-                      onClick={(e) => this.clickable(e)}
-                      key={i}
-                    >
-                      <a className="thumbnail" id="carousel-selector-0">
-                        <img src={obj.thumbnail_url} id={i} />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="col-sm-8">
-                <div className="col-xs-12" id="slider">
-                  <div className="row">
-                    <div
-                      className="col-sm-12"
-                      id="carousel-bounding-box"
-                      id="boxes"
-                    >
-                      <div className="carousel slide" id="myCarousel">
-                        <div>
-                          <div className="carousel-inner">
-                            <div
-                              className="active item"
-                              data-slide-number="0"
-                              // onClick={(e) => this.clickable(e)}
-                            >
-                              <div id="myWindow">
+        <div id="main_area" className="bigbox">
+          <div className="row">
+            <div className="col-sm-3" id="slider-thumbs">
+              <ul className="hide-bullets">
+                {this.state.data.map((obj, i) => (
+                  <li
+                    className="col-sm-12"
+                    onClick={(e) => this.clickable(e)}
+                    key={i}
+                  >
+                    <a className="thumbnail" id="carousel-selector-0">
+                      <img src={obj.thumbnail_url} id={i} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="col-sm-8">
+              <div className="col-xs-12" id="slider">
+                <div className="row">
+                  <div
+                    className="col-sm-12"
+                    id="carousel-bounding-box"
+                    id="boxes"
+                  >
+                    <div className="carousel slide" id="myCarousel">
+                      <div>
+                        <div className="carousel-inner">
+                          <div
+                            className="active item"
+                            data-slide-number="0"
+                            // onClick={(e) => this.clickable(e)}
+                          >
+                            <div id="myWindow">
+                              {this.state.currenObj && (
                                 <img
                                   // style={{ width: "400px", height: "600px" }}
                                   id="myContent"
                                   // id={this.state.currentId}
-                                  src={
-                                    this.state.currenObj
-                                      ? this.state.currenObj.url
-                                      : this.state.data[0].url
-                                  }
+                                  src={this.state.currenObj.url}
                                   onClick={this.zoomIn.bind(this)}
                                 />
-                              </div>
+                              )}
                             </div>
                           </div>
                         </div>
-
-                        {this.state.counter !== 0 && this.state.render ? (
-                          <a
-                            className="left carousel-control"
-                            href="#myCarousel"
-                            role="button"
-                            data-slide="prev"
-                            onClick={this.arrowLeftClick.bind(this)}
-                          >
-                            <span className="glyphicon glyphicon-chevron-left"></span>
-                          </a>
-                        ) : null}
-                        {this.state.counter !== this.state.data.length - 1 &&
-                        this.state.render ? (
-                          <a
-                            className="right carousel-control"
-                            href="#myCarousel"
-                            role="button"
-                            data-slide="next"
-                            onClick={this.arrowRightClick.bind(this)}
-                          >
-                            <span className="glyphicon glyphicon-chevron-right"></span>
-                          </a>
-                        ) : null}
                       </div>
+
+                      {this.state.counter !== 0 && this.state.render ? (
+                        <a
+                          className="left carousel-control"
+                          href="#myCarousel"
+                          role="button"
+                          data-slide="prev"
+                          onClick={this.arrowLeftClick.bind(this)}
+                        >
+                          <span className="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                      ) : null}
+                      {this.state.counter !== this.state.data.length - 1 &&
+                      this.state.render ? (
+                        <a
+                          className="right carousel-control"
+                          href="#myCarousel"
+                          role="button"
+                          data-slide="next"
+                          onClick={this.arrowRightClick.bind(this)}
+                        >
+                          <span className="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                      ) : null}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        ) : null}
+        </div>
       </div>
     );
   }
