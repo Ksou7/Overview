@@ -17,11 +17,10 @@ export class Rating extends Component {
             numberOfStars={5}
             name="rating"
           />
-          <div id="mylink">
-            <a id="link" href="" target="_blank">
-              Read all reviews
-            </a>
-          </div>
+
+          <a id="link" href="" target="_blank">
+            Read all reviews
+          </a>
         </div>
         <div id="mainbox">
           <div id="productDetails">

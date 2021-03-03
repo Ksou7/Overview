@@ -50,12 +50,12 @@ class Caroussel extends Component {
     }
   }
 
-  myf() {
-    this.setState({
-      currentId: this.state.currentId,
-    });
-    console.log("==>");
-  }
+  // myf() {
+  //   this.setState({
+  //     currentId: this.state.currentId,
+  //   });
+  //   console.log("==>");
+  // }
 
   clickable(e) {
     e.preventDefault();
