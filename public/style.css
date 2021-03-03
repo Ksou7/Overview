@@ -2,6 +2,13 @@
 body {
   background-color: #e1eaea;
 }
+
+.thisrating {
+  position: absolute;
+  margin-left: 60em;
+  margin-top: 10em;
+}
+
 .navbar-brand {
   float: left;
   height: 2em;
@@ -41,6 +48,7 @@ navbar-default {
 
 .thumbnail {
   padding: 0;
+  height: 500px;
 }
 
 .carousel-inner > .item > img,
@@ -55,7 +63,7 @@ navbar-default {
 }
 
 .item {
-  width: 40em;
+  width: 30em;
 }
 
 .row {
@@ -69,7 +77,93 @@ navbar-default {
   background-color: #e1eaea;
   border: 2px solid #e0e0e0;
 }
+
+/* #myWindow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #e1eaea;
+} */
+
+/* #myContent {
+  position: relative;
+  display: flex;
+  align-items: center;
+} */
+
+.carousel-inner {
+  padding: 50px;
+  transition: transform 0.2s;
+  width: 600rem;
+  margin: 0 auto;
+}
+.carousel-inner:hover {
+  transform: scale(1.7);
+}
+
 #this {
-  width: 900px;
-  margin-right: 23em;
+  width: 55em;
+  margin-right: 32em;
+}
+
+#link:active {
+  text-decoration: underline;
+  color: black;
+}
+#link:visited {
+  text-decoration: underline;
+  color: black;
+}
+#link {
+  position: relative;
+}
+#productDetails {
+  margin-top: 2em;
+  padding: 10px;
+}
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&family=Oswald:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@200;400&family=Oswald:wght@200;700&display=swap");
+
+#name {
+  font-family: "Merriweather", serif;
+  font-size: 45px;
+}
+#category {
+  font-family: "Oswald", sans-serif;
+  font-size: 20px;
+}
+#price {
+  font-family: "Oswald", sans-serif;
+  font-size: 15px;
+}
+.dot {
+  border-radius: 50%;
+
+  background-color: grey;
+  height: 7rem;
+  width: 7rem;
+}
+.styledot {
+  margin-top: 1em;
+  display: inline-block;
+  margin-left: 2rem;
+  margin-bottom: 0.5rem;
+}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap");
+#boldstyle {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+#stylething {
+  margin-left: 0.8em;
+  margin-top: 3em;
+  font-family: "Roboto", sans-serif;
+  font-weight: thin;
+  font-size: 15px;
+}
+
+#mylink {
+  margin-left: 9em;
 }
