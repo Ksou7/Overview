@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // import "@brainhubeu/react-carousel/lib/style.css";
 import data from "./data.js";
 import axios from "axios";
+import { uuid } from "uuidv4";
 import WZoom from "../../src/wheel-zoom.js";
 class Caroussel extends Component {
   constructor(props) {
@@ -16,32 +17,37 @@ class Caroussel extends Component {
       isZoomed: false,
     };
     this.clickable = this.clickable.bind(this);
-    this.fetchPictures = this.fetchPictures.bind(this);
+    // this.fetchPictures = this.fetchPictures.bind(this);
   }
 
   //function to fetch the pictures url
-  fetchPictures() {
-    axios.get("/api/overview").then((response) => {
-      console.log("fetching", response);
-      this.setState({ data: response.data }, console.log(this.state.data));
-      // console.log("heeeeere", this.state.data[0].thumbnail_url);
-    });
-  }
+  // fetchPictures() {
+  //   axios.get("/api/overview").then((response) => {
+  //     console.log("fetching", response);
+  //     this.setState({ data: response.data }, console.log(this.state.data));
+  //   });
+  // }
 
   async componentDidMount() {
     try {
       const response = await axios.get("/api/overview");
       this.setState(
-        { data: response.data, currenObj: response.data[0], render: true },
+        {
+          data: this.props.style,
+          currenObj: this.props.style[this.props.index].photos[
+            this.props.index
+          ],
+          render: true,
+        },
         () => {
-          console.log(this.state);
+          console.log("==>", this.state.data);
+          console.log("==>", this.state.currenObj);
+          // console.log("==>", this.state.data[this.props.index]);
         }
       );
     } catch (e) {
       console.log(e);
     }
-
-    // console.log("heeeeere", this.state.data[0].thumbnail_url);
   }
 
   myf() {
@@ -54,22 +60,30 @@ class Caroussel extends Component {
   clickable(e) {
     e.preventDefault();
     console.log(e.target.id);
+
     this.setState({
-      currenObj: this.state.data[e.target.id],
+      currenObj: this.state.data[e.target.id].photos[this.props.index],
     });
-    // this.forceUpdate();
   }
 
   arrowRightClick() {
+    console.log(
+      this.state.data[this.props.index].photos[this.state.counter + 1]
+    );
+
     this.state.counter !== this.state.data.length
       ? this.setState({
           counter: this.state.counter + 1,
-          currenObj: this.state.data[this.state.counter + 1],
+          currenObj: this.state.data[this.props.index].photos[
+            this.state.counter + 1
+          ],
           render: true,
         })
       : this.setState({
           counter: this.state.counter,
-          currenObj: this.state.data[this.state.counter],
+          currenObj: this.state.data[this.props.index].photos[
+            this.state.counter
+          ],
           render: true,
         });
   }
@@ -78,11 +92,15 @@ class Caroussel extends Component {
     this.state.counter !== 0
       ? this.setState({
           counter: this.state.counter - 1,
-          currenObj: this.state.data[this.state.counter - 1],
+          currenObj: this.state.data[this.props.index].photos[
+            this.state.counter - 1
+          ],
         })
       : this.setState({
-          counter: this.state.data.length,
-          currenObj: this.state.data[this.state.counter],
+          counter: this.state.data[this.props.index].photos.length,
+          currenObj: this.state.data[this.props.index].photos[
+            this.state.counter
+          ],
         });
   }
   zoomIn() {
@@ -106,10 +124,13 @@ class Caroussel extends Component {
                   <li
                     className="col-sm-12"
                     onClick={(e) => this.clickable(e)}
-                    key={i}
+                    key={uuid()}
                   >
                     <a className="thumbnail" id="carousel-selector-0">
-                      <img src={obj.thumbnail_url} id={i} />
+                      <img
+                        src={obj.photos[this.props.index].thumbnail_url}
+                        id={i}
+                      />
                     </a>
                   </li>
                 ))}
@@ -130,14 +151,10 @@ class Caroussel extends Component {
                             {/* <div id="myWindow"> */}
                             {this.state.currenObj && (
                               <img
-                                // style={{ width: "400px", height: "600px" }}
-                                // id="myContent"
-                                // id={this.state.currentId}
                                 src={this.state.currenObj.url}
                                 onClick={this.zoomIn.bind(this)}
                               />
                             )}
-                            {/* </div> */}
                           </div>
                         </div>
                       </div>

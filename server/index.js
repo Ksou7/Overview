@@ -23,6 +23,20 @@ app.get("/api/overview", async (req, res) => {
     res.send(err);
   }
 });
+app.get("/api/style", async (req, res) => {
+  try {
+    const auth = process.env.TOKEN;
+    console.log(auth);
+    const data = await axios.get(
+      "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
+      { headers: { Authorization: auth } }
+    );
+    console.log('pppppppp',data.data);
+    res.send(data.data.results);
+  } catch (err) {
+    res.send(err);
+  }
+});
 
 app.get("/api/overview/product", async (req, res) => {
   try {

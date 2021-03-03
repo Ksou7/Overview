@@ -138,11 +138,32 @@ navbar-default {
   font-size: 15px;
 }
 .dot {
-  height: 50px;
-  width: 50px;
-  background-color: #e1eaea;
   border-radius: 50%;
+
+  background-color: grey;
+  height: 7rem;
+  width: 7rem;
+}
+.styledot {
+  margin-top: 1em;
   display: inline-block;
-  margin-top: 2px;
-  margin-right: 5px;
+  margin-left: 2rem;
+  margin-bottom: 0.5rem;
+}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap");
+#boldstyle {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+#stylething {
+  margin-left: 0.8em;
+  margin-top: 3em;
+  font-family: "Roboto", sans-serif;
+  font-weight: thin;
+  font-size: 15px;
+}
+
+#mylink {
+  margin-left: 9em;
 }
