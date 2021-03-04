@@ -268,3 +268,8 @@ navbar-default {
   position: relative;
   margin-left: 100px;
 }
+#textStyle {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  text-align: center;
+}

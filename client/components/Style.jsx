@@ -60,11 +60,14 @@ export class Style extends Component {
             <option value="1">1</option>
 
             {this.props.size.map((elem, i) => (
-              <option key={i}>{elem[i].quantity}</option>
+              <option id="textStyle" key={i}>
+                {elem[i].quantity}
+              </option>
             ))}
           </select>
           <select name="cart" id="carts">
             <option>ADD TO CART</option>
+            <option>PLEASE SELECT SIZE</option>
             <option>1</option>
             <option>3</option>
             <option>4</option>
