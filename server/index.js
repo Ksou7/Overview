@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.get("/api/overview", async (req, res) => {
   try {
     // const auth = process.env.TOKEN;
-    const auth = "8660cebe916066251ba59f77fcb38e7a0e04e508";
+    const auth = "bfb2309a70ec57683df4cb422f18d672725854bb";
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
@@ -27,9 +27,9 @@ app.get("/api/overview", async (req, res) => {
 });
 
 //fetch he styles
-app.get("/api/style", async (req, res) => {
+app.get("/api/overview/style", async (req, res) => {
   try {
-    const auth = "8660cebe916066251ba59f77fcb38e7a0e04e508";
+    const auth = "bfb2309a70ec57683df4cb422f18d672725854bb";
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
@@ -42,9 +42,9 @@ app.get("/api/style", async (req, res) => {
   }
 });
 //FETCH THE SIZE AND THE QUANTITY
-app.get("/api/q", async (req, res) => {
+app.get("/api/overview/q", async (req, res) => {
   try {
-    const auth = "8660cebe916066251ba59f77fcb38e7a0e04e508";
+    const auth = "bfb2309a70ec57683df4cb422f18d672725854bb";
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
@@ -63,7 +63,7 @@ app.get("/api/q", async (req, res) => {
 //fetch the data for products
 app.get("/api/overview/product", async (req, res) => {
   try {
-    const auth = "8660cebe916066251ba59f77fcb38e7a0e04e508";
+    const auth = "bfb2309a70ec57683df4cb422f18d672725854bb";
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003",

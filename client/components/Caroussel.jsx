@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import data from "./data.js";
 import axios from "axios";
 import { uuid } from "uuidv4";
-import WZoom from "../../src/wheel-zoom.js";
+
 class Caroussel extends Component {
   constructor(props) {
     super(props);
@@ -28,17 +28,18 @@ class Caroussel extends Component {
   //   });
   // }
 
-  async componentDidMount() {
-    try {
-      const response = await axios.get("/api/overview")
-      this.setState({
-        data: this.props.style,
-        currenObj: this.props.style[this.props.index].photos[this.props.index],
-        render: true,
-      });
-    } catch (e) {
-      console.log(e);
-    }
+  componentDidMount() {
+    
+    
+        axios.get("/api/overview").then((res)=>{
+        this.setState({
+          data: res.data,
+          
+        })
+      
+      })
+     
+     
   }
 
   clickable(e) {
@@ -46,26 +47,26 @@ class Caroussel extends Component {
     console.log(e.target.id);
 
     this.setState({
-      currenObj: this.state.data[e.target.id].photos[this.props.index],
+      currenObj: this.props.style[e.target.id].photos[this.props.index],
     });
   }
 
   arrowRightClick() {
     console.log(
-      this.state.data[this.props.index].photos[this.state.counter + 1]
+      this.props.style[this.props.index].photos[this.state.counter + 1]
     );
 
-    this.state.counter !== this.state.data.length
+    this.state.counter !== this.props.style.length
       ? this.setState({
           counter: this.state.counter + 1,
-          currenObj: this.state.data[this.props.index].photos[
+          currenObj: this.props.style[this.props.index].photos[
             this.state.counter + 1
           ],
           render: true,
         })
       : this.setState({
           counter: this.state.counter,
-          currenObj: this.state.data[this.props.index].photos[
+          currenObj: this.props.style[this.props.index].photos[
             this.state.counter
           ],
           render: true,
@@ -76,13 +77,13 @@ class Caroussel extends Component {
     this.state.counter !== 0
       ? this.setState({
           counter: this.state.counter - 1,
-          currenObj: this.state.data[this.props.index].photos[
+          currenObj: this.props.style[this.props.index].photos[
             this.state.counter - 1
           ],
         })
       : this.setState({
-          counter: this.state.data[this.props.index].photos.length,
-          currenObj: this.state.data[this.props.index].photos[
+          counter: this.props.style[this.props.index].photos.length,
+          currenObj: this.props.style[this.props.index].photos[
             this.state.counter
           ],
         });
@@ -92,8 +93,10 @@ class Caroussel extends Component {
   }
 
   render() {
-    return (
+    console.log('ff',this.state.data)
+        return (
       <div id="this" className="container">
+     
         <div id="main_area" className="bigbox">
           <div className="row">
             <div className="col-sm-3" id="slider-thumbs">
@@ -106,7 +109,7 @@ class Caroussel extends Component {
                   >
                     <a className="thumbnail" id="carousel-selector-0">
                       <img
-                        src={obj.photos[this.props.index].thumbnail_url}
+                        src={obj.thumbnail_url}
                         id={i}
                       />
                     </a>
@@ -147,7 +150,7 @@ class Caroussel extends Component {
                           <span className="glyphicon glyphicon-chevron-left"></span>
                         </a>
                       ) : null}
-                      {this.state.counter !== this.state.data.length - 1 &&
+                      {this.state.counter !== this.props.style.length - 1 &&
                       this.state.render ? (
                         <a
                           className="right carousel-control"
@@ -166,6 +169,7 @@ class Caroussel extends Component {
             </div>
           </div>
         </div>
+     
       </div>
     );
   }

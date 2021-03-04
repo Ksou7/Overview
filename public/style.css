@@ -1,4 +1,3 @@
-/* navbar */
 body {
   background-color: #e1eaea;
 }
@@ -46,7 +45,7 @@ navbar-default {
   color: black;
 }
 .navbar {
-  position: fixed;
+  position: relative;
   margin-left: 3rem;
   margin-right: 3rem;
   margin-top: 2em;
@@ -64,7 +63,6 @@ navbar-default {
 
 .thumbnail {
   padding: 0;
-  height: 500px;
 }
 
 .carousel-inner > .item > img,
@@ -94,35 +92,21 @@ navbar-default {
   border: 2px solid #e0e0e0;
 }
 
-/* #myWindow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #e1eaea;
-} */
-
-/* #myContent {
-  position: relative;
-  display: flex;
-  align-items: center;
-} */
-
 .carousel-inner {
   padding: 50px;
   transition: transform 0.2s;
-  width: 600rem;
+  width: 100rem;
   margin: 0 auto;
 }
 .carousel-inner:hover {
-  transform: scale(1.7);
+  transform: scale(1.2);
 }
 
 #this {
   width: 55em;
   /* height: 500px; */
   /* margin-right: 32em; */
-  float: left;
+
   margin-left: 3rem;
 }
 
