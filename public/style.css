@@ -22,15 +22,31 @@ body {
   box-shadow: 10px 5px 5px grey;
 }
 #search {
-  margin-left: 60em;
+  margin-left: 40em;
+  display: flex;
+  flex-wrap: nowrap;
 }
+/* .searchform{
+  margin-left:30em;
+  display: flex;
+  flex-wrap: nowrap;
+} 
+ /* #moveright{
+  margin-left:30em;
+ 
+
+}  */
+
 #form {
-  margin-bottom: 3rem;
+  margin-top: 50px;
+  margin-bottom: 4rem;
+  display: flex;
 }
 navbar-default {
   color: black;
 }
 .navbar {
+  position: fixed;
   margin-left: 3rem;
   margin-right: 3rem;
   margin-top: 2em;
@@ -104,7 +120,10 @@ navbar-default {
 
 #this {
   width: 55em;
-  margin-right: 32em;
+  /* height: 500px; */
+  /* margin-right: 32em; */
+  float: left;
+  margin-left: 3rem;
 }
 
 #link:active {
@@ -117,6 +136,7 @@ navbar-default {
 }
 #link {
   position: relative;
+  margin-left: 10px;
 }
 #productDetails {
   margin-top: 2em;
@@ -141,8 +161,8 @@ navbar-default {
   border-radius: 50%;
 
   background-color: grey;
-  height: 7rem;
-  width: 7rem;
+  height: 8rem;
+  width: 8rem;
 }
 .styledot {
   margin-top: 1em;
@@ -166,4 +186,90 @@ navbar-default {
 
 #mylink {
   margin-left: 9em;
+}
+
+.imgSize {
+  max-width: 100px;
+  min-width: 100px;
+  min-height: 500px;
+  max-height: 500px;
+  object-fit: cover;
+  /* position: fixed */
+}
+
+#search {
+  margin-right: 0.5em;
+}
+@media only screen and (max-width: 400px) {
+  #search {
+    margin-left: 40em;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-right: 0.5em;
+  }
+
+  .navbar {
+    position: fixed;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: 2em;
+  }
+
+  .btn {
+    margin-left: 40em;
+
+    flex-wrap: nowrap;
+    display: inline-block;
+  }
+  .searchform {
+    margin-left: 30em;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .dot {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 5rem;
+    width: 5rem;
+  }
+
+  #dotdiv {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
+
+#sizes {
+  width: 170px;
+  height: 50px;
+  margin-top: 30px;
+  display: inline-block;
+}
+
+#quantities {
+  width: 170px;
+  height: 50px;
+  margin-top: 20px;
+  margin-left: 40px;
+  display: inline-block;
+}
+#buttondiv {
+  margin-top: 20px;
+  margin-left: 5px;
+}
+#textquantity {
+  text-align: center;
+}
+#carts {
+  width: 200px;
+  height: 50px;
+  margin-top: 30px;
+  position: relative;
+  margin-left: 100px;
+}
+#textStyle {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  text-align: center;
 }

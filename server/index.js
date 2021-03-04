@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.get("/api/overview", async (req, res) => {
   try {
     // const auth = process.env.TOKEN;
-    const auth = "045d6d181ff1da9212aa7ef866a4adaa634e0d81";
+    const auth = "c6d532bc8fd56454f10fa0a7d703584aad41ed00";
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
@@ -29,7 +29,7 @@ app.get("/api/overview", async (req, res) => {
 //fetch he styles
 app.get("/api/style", async (req, res) => {
   try {
-    const auth = "045d6d181ff1da9212aa7ef866a4adaa634e0d81";
+    const auth = "c6d532bc8fd56454f10fa0a7d703584aad41ed00";
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
@@ -41,11 +41,29 @@ app.get("/api/style", async (req, res) => {
     res.send(err);
   }
 });
+//FETCH THE SIZE AND THE QUANTITY
+app.get("/api/q", async (req, res) => {
+  try {
+    const auth = "c6d532bc8fd56454f10fa0a7d703584aad41ed00";
+    console.log(auth);
+    const data = await axios.get(
+      "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
+      { headers: { Authorization: auth } }
+    );
+
+    var size = data.data.results.map((obj, i) => {
+      return Object.values(obj.skus);
+    });
+    res.send(size);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 //fetch the data for products
 app.get("/api/overview/product", async (req, res) => {
   try {
-    const auth = "045d6d181ff1da9212aa7ef866a4adaa634e0d81";
+    const auth = "c6d532bc8fd56454f10fa0a7d703584aad41ed00";
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003",
@@ -56,6 +74,7 @@ app.get("/api/overview/product", async (req, res) => {
     res.send(err);
   }
 });
+
 app.listen(port, () => {
   console.log(`server running at: http://localhost:${port}`);
 });

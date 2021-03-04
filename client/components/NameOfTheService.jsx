@@ -12,7 +12,14 @@ export default class NameOfTheService extends React.Component {
       productInfo: {},
       style: [],
       index: 0,
+      size: [],
     };
+  }
+  fetchSize() {
+    axios.get("/api/q").then((response) => {
+      console.log("====================>", response.data);
+      this.setState({ size: response.data });
+    });
   }
 
   fetchStyleData() {
@@ -34,6 +41,7 @@ export default class NameOfTheService extends React.Component {
         console.log(err);
       });
     this.fetchStyleData();
+    this.fetchSize();
   }
   changeStyle(e) {
     this.setState({ index: e.target.getAttribute("index"), test: true }, () => {
@@ -52,6 +60,8 @@ export default class NameOfTheService extends React.Component {
           <Rating productInfo={this.state.productInfo} />
           <div>
             <Style
+              size={this.state.size}
+              fetchSize={this.fetchSize.bind(this)}
               fetchStyleData={this.fetchStyleData.bind(this)}
               test={this.state.test}
               style={this.state.style}
