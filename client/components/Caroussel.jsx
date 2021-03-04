@@ -30,32 +30,16 @@ class Caroussel extends Component {
 
   async componentDidMount() {
     try {
-      const response = await axios.get("/api/overview");
-      this.setState(
-        {
-          data: this.props.style,
-          currenObj: this.props.style[this.props.index].photos[
-            this.props.index
-          ],
-          render: true,
-        },
-        () => {
-          console.log("==>", this.state.data);
-          console.log("==>", this.state.currenObj);
-          // console.log("==>", this.state.data[this.props.index]);
-        }
-      );
+      const response = await axios.get("/api/overview")
+      this.setState({
+        data: this.props.style,
+        currenObj: this.props.style[this.props.index].photos[this.props.index],
+        render: true,
+      });
     } catch (e) {
       console.log(e);
     }
   }
-
-  // myf() {
-  //   this.setState({
-  //     currentId: this.state.currentId,
-  //   });
-  //   console.log("==>");
-  // }
 
   clickable(e) {
     e.preventDefault();
@@ -108,12 +92,6 @@ class Caroussel extends Component {
   }
 
   render() {
-    console.log(this.state.data);
-    // WZoom.create("#myContent", {
-    //   type: "html",
-    //   width: 1000,
-    //   height: 500,
-    // });
     return (
       <div id="this" className="container">
         <div id="main_area" className="bigbox">
@@ -148,7 +126,6 @@ class Caroussel extends Component {
                       <div>
                         <div className="carousel-inner">
                           <div className="active item" data-slide-number="0">
-                            {/* <div id="myWindow"> */}
                             {this.state.currenObj && (
                               <img
                                 src={this.state.currenObj.url}
