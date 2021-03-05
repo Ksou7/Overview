@@ -17,14 +17,14 @@ export default class NameOfTheService extends React.Component {
   }
   //fetch quantity and size
   fetchSize() {
-    axios.get("http://104.248.128.48/overview/q").then((response) => {
+    axios.get("http://104.248.128.48:3003/overview/q").then((response) => {
       this.setState({ size: response.data });
     });
   }
 
   //fetch images
   fetchStyleData() {
-    axios.get("http://104.248.128.48/overview/style").then((response) => {
+    axios.get("http://104.248.128.48:3003/overview/style").then((response) => {
       this.setState({ style: response.data });
     });
   }
@@ -32,7 +32,7 @@ export default class NameOfTheService extends React.Component {
   componentDidMount() {
     console.log("heeeeere");
     axios
-      .get("http://104.248.128.48/overview/product")
+      .get("http://104.248.128.48:3003/overview/product")
       .then((response) => {
         this.setState({ productInfo: response.data });
         console.log("heeeere", response.data);
