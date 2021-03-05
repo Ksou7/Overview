@@ -2,8 +2,10 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const app = express();
-// const env = require("dotenv").config();
+const cors = require("cors");
+require("dotenv").config();
 const port = process.env.PORT || 3003;
+app.use(cors());
 
 const axios = require("axios");
 
@@ -13,7 +15,8 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.get("/overview", async (req, res) => {
   try {
     // const auth = process.env.TOKEN;
-    const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
+    const auth =
+      "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9" || process.env.TOKEN;
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
@@ -29,7 +32,8 @@ app.get("/overview", async (req, res) => {
 //fetch he styles
 app.get("/overview/style", async (req, res) => {
   try {
-    const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
+    const auth =
+      "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9" || process.env.TOKEN;
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
@@ -44,7 +48,8 @@ app.get("/overview/style", async (req, res) => {
 //FETCH THE SIZE AND THE QUANTITY
 app.get("/overview/q", async (req, res) => {
   try {
-    const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
+    const auth =
+      "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9" || process.env.TOKEN;
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
@@ -63,7 +68,8 @@ app.get("/overview/q", async (req, res) => {
 //fetch the data for products
 app.get("/overview/product", async (req, res) => {
   try {
-    const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
+    const auth =
+      "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9" || process.env.TOKEN;
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003",
