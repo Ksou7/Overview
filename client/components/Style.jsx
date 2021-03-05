@@ -22,7 +22,7 @@ export class Style extends Component {
         <div id="dotdiv">
           <div>
             <div id="stylething">
-              <span id="boldstyle">STYLE ></span> {this.state.name}
+              <span id="boldstyle">STYLE </span> {this.state.name}
             </div>
           </div>
           {styles.map((style, index) => {
@@ -65,13 +65,10 @@ export class Style extends Component {
               </option>
             ))}
           </select>
-          <select name="cart" id="carts">
-            <option>ADD TO CART</option>
-            <option>PLEASE SELECT SIZE</option>
-            <option>1</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
+
+          <button id="carts" type="button" className="btn btn-light">
+            ADD TO CART
+          </button>
         </div>
       </div>
     );

@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.get("/api/overview", async (req, res) => {
   try {
     // const auth = process.env.TOKEN;
-    const auth = "bfb2309a70ec57683df4cb422f18d672725854bb";
+    const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
@@ -29,7 +29,7 @@ app.get("/api/overview", async (req, res) => {
 //fetch he styles
 app.get("/api/overview/style", async (req, res) => {
   try {
-    const auth = "bfb2309a70ec57683df4cb422f18d672725854bb";
+    const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
@@ -44,7 +44,7 @@ app.get("/api/overview/style", async (req, res) => {
 //FETCH THE SIZE AND THE QUANTITY
 app.get("/api/overview/q", async (req, res) => {
   try {
-    const auth = "bfb2309a70ec57683df4cb422f18d672725854bb";
+    const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles",
@@ -63,7 +63,7 @@ app.get("/api/overview/q", async (req, res) => {
 //fetch the data for products
 app.get("/api/overview/product", async (req, res) => {
   try {
-    const auth = "bfb2309a70ec57683df4cb422f18d672725854bb";
+    const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
     console.log(auth);
     const data = await axios.get(
       "https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003",
