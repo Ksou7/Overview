@@ -10,7 +10,7 @@ const axios = require("axios");
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "../public")));
 //fetch array of thumbnail url and url
-app.get("/api/overview", async (req, res) => {
+app.get("/overview", async (req, res) => {
   try {
     // const auth = process.env.TOKEN;
     const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
@@ -27,7 +27,7 @@ app.get("/api/overview", async (req, res) => {
 });
 
 //fetch he styles
-app.get("/api/overview/style", async (req, res) => {
+app.get("/overview/style", async (req, res) => {
   try {
     const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
     console.log(auth);
@@ -42,7 +42,7 @@ app.get("/api/overview/style", async (req, res) => {
   }
 });
 //FETCH THE SIZE AND THE QUANTITY
-app.get("/api/overview/q", async (req, res) => {
+app.get("/overview/q", async (req, res) => {
   try {
     const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
     console.log(auth);
@@ -61,7 +61,7 @@ app.get("/api/overview/q", async (req, res) => {
 });
 
 //fetch the data for products
-app.get("/api/overview/product", async (req, res) => {
+app.get("/overview/product", async (req, res) => {
   try {
     const auth = "f71f33ddc1b38f20fe1db1db981ba172e54bf4a9";
     console.log(auth);

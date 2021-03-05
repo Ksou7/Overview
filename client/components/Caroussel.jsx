@@ -19,7 +19,7 @@ class Caroussel extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/overview").then((response) => {
+    axios.get("http://104.248.128.48/overview").then((response) => {
       this.setState({
         data: this.props.style,
         currenObj: this.props.style[this.props.index].photos[this.props.index],
