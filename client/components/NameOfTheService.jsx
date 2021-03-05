@@ -1,6 +1,6 @@
 import React from "react";
 import Caroussel from "./Caroussel.jsx";
-import Navbar from "./Navbar.jsx";
+// import Navbar from "./Navbar.jsx";
 import Rating from "./Rating.jsx";
 import Style from "./Style.jsx";
 import axios from "axios";
@@ -17,14 +17,14 @@ export default class NameOfTheService extends React.Component {
   }
   //fetch quantity and size
   fetchSize() {
-    axios.get("/api/overview/q").then((response) => {
+    axios.get("http://104.248.128.48:3003/overview/q").then((response) => {
       this.setState({ size: response.data });
     });
   }
 
   //fetch images
   fetchStyleData() {
-    axios.get("/api/overview/style").then((response) => {
+    axios.get("http://104.248.128.48:3003/overview/style").then((response) => {
       this.setState({ style: response.data });
     });
   }
@@ -32,7 +32,7 @@ export default class NameOfTheService extends React.Component {
   componentDidMount() {
     console.log("heeeeere");
     axios
-      .get("/api/overview/product")
+      .get("http://104.248.128.48:3003/overview/product")
       .then((response) => {
         this.setState({ productInfo: response.data });
         console.log("heeeere", response.data);
@@ -52,9 +52,9 @@ export default class NameOfTheService extends React.Component {
     console.log("here my state", this.state);
     return (
       <div>
-        <div>
+        {/* <div>
           <Navbar />
-        </div>
+        </div> */}
 
         <div className="thisrating">
           <Rating productInfo={this.state.productInfo} />
