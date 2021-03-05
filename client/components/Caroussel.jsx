@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-// import Carousel from "@brainhubeu/react-carousel";
-// import "@brainhubeu/react-carousel/lib/style.css";
+
 import data from "./data.js";
 import axios from "axios";
 import { uuid } from "uuidv4";
@@ -17,29 +16,16 @@ class Caroussel extends Component {
       isZoomed: false,
     };
     this.clickable = this.clickable.bind(this);
-    // this.fetchPictures = this.fetchPictures.bind(this);
   }
 
-  //function to fetch the pictures url
-  // fetchPictures() {
-  //   axios.get("/api/overview").then((response) => {
-  //     console.log("fetching", response);
-  //     this.setState({ data: response.data }, console.log(this.state.data));
-  //   });
-  // }
-
   componentDidMount() {
-    
-    
-        axios.get("/api/overview").then((res)=>{
-        this.setState({
-          data: res.data,
-          
-        })
-      
-      })
-     
-     
+    axios.get("/api/overview").then((response) => {
+      this.setState({
+        data: this.props.style,
+        currenObj: this.props.style[this.props.index].photos[this.props.index],
+        render: true,
+      });
+    });
   }
 
   clickable(e) {
@@ -47,26 +33,26 @@ class Caroussel extends Component {
     console.log(e.target.id);
 
     this.setState({
-      currenObj: this.props.style[e.target.id].photos[this.props.index],
+      currenObj: this.state.data[e.target.id].photos[this.props.index],
     });
   }
 
   arrowRightClick() {
     console.log(
-      this.props.style[this.props.index].photos[this.state.counter + 1]
+      this.state.data[this.props.index].photos[this.state.counter + 1]
     );
 
-    this.state.counter !== this.props.style.length
+    this.state.counter !== this.state.data.length
       ? this.setState({
           counter: this.state.counter + 1,
-          currenObj: this.props.style[this.props.index].photos[
+          currenObj: this.state.data[this.props.index].photos[
             this.state.counter + 1
           ],
           render: true,
         })
       : this.setState({
           counter: this.state.counter,
-          currenObj: this.props.style[this.props.index].photos[
+          currenObj: this.state.data[this.props.index].photos[
             this.state.counter
           ],
           render: true,
@@ -77,26 +63,23 @@ class Caroussel extends Component {
     this.state.counter !== 0
       ? this.setState({
           counter: this.state.counter - 1,
-          currenObj: this.props.style[this.props.index].photos[
+          currenObj: this.state.data[this.props.index].photos[
             this.state.counter - 1
           ],
         })
       : this.setState({
-          counter: this.props.style[this.props.index].photos.length,
-          currenObj: this.props.style[this.props.index].photos[
+          counter: this.state.data[this.props.index].photos.length,
+          currenObj: this.state.data[this.props.index].photos[
             this.state.counter
           ],
         });
   }
-  zoomIn() {
-    this.setState({ isZoomed: true });
-  }
 
   render() {
-    console.log('ff',this.state.data)
-        return (
+    console.log(this.state.data);
+
+    return (
       <div id="this" className="container">
-     
         <div id="main_area" className="bigbox">
           <div className="row">
             <div className="col-sm-3" id="slider-thumbs">
@@ -109,7 +92,7 @@ class Caroussel extends Component {
                   >
                     <a className="thumbnail" id="carousel-selector-0">
                       <img
-                        src={obj.thumbnail_url}
+                        src={obj.photos[this.props.index].thumbnail_url}
                         id={i}
                       />
                     </a>
@@ -129,10 +112,11 @@ class Caroussel extends Component {
                       <div>
                         <div className="carousel-inner">
                           <div className="active item" data-slide-number="0">
+                            {/* <div id="myWindow"> */}
                             {this.state.currenObj && (
                               <img
+                                className="imgSize"
                                 src={this.state.currenObj.url}
-                                onClick={this.zoomIn.bind(this)}
                               />
                             )}
                           </div>
@@ -150,7 +134,7 @@ class Caroussel extends Component {
                           <span className="glyphicon glyphicon-chevron-left"></span>
                         </a>
                       ) : null}
-                      {this.state.counter !== this.props.style.length - 1 &&
+                      {this.state.counter !== this.state.data.length - 1 &&
                       this.state.render ? (
                         <a
                           className="right carousel-control"
@@ -169,7 +153,6 @@ class Caroussel extends Component {
             </div>
           </div>
         </div>
-     
       </div>
     );
   }

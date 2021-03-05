@@ -15,16 +15,16 @@ export default class NameOfTheService extends React.Component {
       size: [],
     };
   }
+  //fetch quantity and size
   fetchSize() {
     axios.get("/api/overview/q").then((response) => {
-      console.log("====================>", response.data);
       this.setState({ size: response.data });
     });
   }
 
+  //fetch images
   fetchStyleData() {
     axios.get("/api/overview/style").then((response) => {
-      console.log("here", response.data);
       this.setState({ style: response.data });
     });
   }
@@ -52,9 +52,9 @@ export default class NameOfTheService extends React.Component {
     console.log("here my state", this.state);
     return (
       <div>
-        {/* <div>
+        <div>
           <Navbar />
-        </div> */}
+        </div>
 
         <div className="thisrating">
           <Rating productInfo={this.state.productInfo} />
