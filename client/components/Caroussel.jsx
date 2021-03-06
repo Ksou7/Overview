@@ -123,7 +123,7 @@ class Caroussel extends Component {
                         </div>
                       </div>
 
-                      {/* {this.state.counter !== 0 && this.state.render ? ( */}
+                      {this.state.counter !== 0 && this.state.render ? (
                         <a
                           className="left carousel-control"
                           href="#myCarousel"
@@ -133,9 +133,9 @@ class Caroussel extends Component {
                         >
                           <span className="glyphicon glyphicon-chevron-left"></span>
                         </a>
-                      {/* ) : null} */}
-                      {/* {this.state.counter !== this.state.data.length - 1 &&
-                      this.state.render ? ( */}
+                      ) : null} 
+                      {this.state.counter !== this.state.data.length - 1 &&
+                      this.state.render ? (
                         <a
                           className="right carousel-control"
                           href="#myCarousel"
@@ -145,7 +145,7 @@ class Caroussel extends Component {
                         >
                           <span className="glyphicon glyphicon-chevron-right"></span>
                         </a>
-                      {/* ) : null} */}
+                      ) : null} 
                     </div>
                   </div>
                 </div>
